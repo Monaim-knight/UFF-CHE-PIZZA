@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 0.75rem;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-slate-950 text-slate-50 antialiased;
+}
+
+main {
+  @apply flex-1;
+}
+
+a {
+  @apply text-brand-400 underline-offset-4 hover:text-brand-300 hover:underline;
+}
+
+/* Typography scale */
+@layer base {
+  h1 {
+    @apply scroll-m-20 text-4xl font-display font-semibold tracking-tight md:text-5xl lg:text-6xl;
+  }
+  h2 {
+    @apply scroll-m-20 text-3xl font-display font-semibold tracking-tight md:text-4xl;
+  }
+  h3 {
+    @apply scroll-m-20 text-2xl font-display font-semibold tracking-tight;
+  }
+  h4 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+  }
+  p {
+    @apply leading-relaxed text-slate-200;
+  }
+  small {
+    @apply text-xs text-slate-400;
+  }
+}
+
+/* Design system utilities */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full border border-transparent px-5 py-2.5 text-sm font-medium tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-500 text-white hover:bg-brand-400;
+  }
+
+  .btn-outline {
+    @apply btn border-slate-700 bg-transparent text-slate-50 hover:border-brand-400 hover:text-brand-50;
+  }
+
+  .card {
+    @apply relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 shadow-card backdrop-blur;
+  }
+
+  .card-inner {
+    @apply p-5 md:p-6;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full bg-slate-800/80 px-3 py-1 text-xs font-medium uppercase tracking-wide text-slate-200;
+  }
+
+  .badge-accent {
+    @apply badge bg-accent-500/20 text-accent-200;
+  }
+}
+

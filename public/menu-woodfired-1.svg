@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#1e293b"/>
+  <ellipse cx="200" cy="140" rx="70" ry="50" fill="#475569"/>
+  <ellipse cx="200" cy="130" rx="60" ry="40" fill="#64748b"/>
+  <path d="M140 150 Q200 120 260 150" stroke="#94a3b8" stroke-width="2" fill="none"/>
+  <text x="200" y="220" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="12">Half Chicken</text>
+</svg>

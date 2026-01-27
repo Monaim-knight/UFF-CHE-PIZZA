@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#1e293b"/>
+  <ellipse cx="150" cy="140" rx="20" ry="20" fill="#64748b"/>
+  <ellipse cx="200" cy="135" rx="22" ry="22" fill="#64748b"/>
+  <ellipse cx="250" cy="145" rx="19" ry="19" fill="#64748b"/>
+  <ellipse cx="180" cy="170" rx="21" ry="21" fill="#64748b"/>
+  <ellipse cx="220" cy="175" rx="20" ry="20" fill="#64748b"/>
+  <text x="200" y="220" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="12">Crispy Potatoes</text>
+</svg>

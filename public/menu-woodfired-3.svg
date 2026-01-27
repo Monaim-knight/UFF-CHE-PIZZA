@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#1e293b"/>
+  <ellipse cx="200" cy="140" rx="80" ry="45" fill="#475569"/>
+  <ellipse cx="200" cy="135" rx="70" ry="35" fill="#64748b"/>
+  <path d="M120 140 Q200 120 280 140" stroke="#94a3b8" stroke-width="2" fill="none"/>
+  <text x="200" y="220" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="12">King Salmon</text>
+</svg>

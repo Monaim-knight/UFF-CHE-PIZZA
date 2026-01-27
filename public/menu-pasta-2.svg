@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#1e293b"/>
+  <ellipse cx="200" cy="140" rx="90" ry="50" fill="#475569"/>
+  <path d="M120 140 L140 130 L160 140 L180 130 L200 140 L220 130 L240 140 L260 130 L280 140" stroke="#64748b" stroke-width="3" fill="none"/>
+  <circle cx="200" cy="140" r="12" fill="#94a3b8"/>
+  <text x="200" y="220" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="12">Mushroom Tagliatelle</text>
+</svg>

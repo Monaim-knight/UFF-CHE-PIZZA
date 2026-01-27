@@ -1,0 +1,135 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model MenuCategory {
+  id        Int         @id @default(autoincrement())
+  name      String
+  slug      String      @unique
+  description String?
+  sortOrder Int         @default(0)
+  isVisible Boolean     @default(true)
+
+  items MenuItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MenuItem {
+  id          Int           @id @default(autoincrement())
+  name        String
+  slug        String        @unique
+  description String
+  priceCents  Int
+  imageUrl    String?
+  tags        String[]
+  isAvailable Boolean       @default(true)
+  sortOrder   Int           @default(0)
+
+  categoryId Int
+  category   MenuCategory   @relation(fields: [categoryId], references: [id])
+
+  orderItems OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Customer {
+  id           Int           @id @default(autoincrement())
+  email        String        @unique
+  phone        String?
+  firstName    String
+  lastName     String
+  notes        String?
+
+  reservations Reservation[]
+  orders       Order[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Reservation {
+  id           Int        @id @default(autoincrement())
+  startTime    DateTime
+  partySize    Int
+  status       ReservationStatus @default(PENDING)
+  specialNotes String?
+
+  customerId Int
+  customer   Customer   @relation(fields: [customerId], references: [id])
+
+  orders Order[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id            Int         @id @default(autoincrement())
+  status        OrderStatus @default(PENDING)
+  totalCents    Int
+  placedAt      DateTime    @default(now())
+  notes         String?
+
+  customerId    Int?
+  customer      Customer?   @relation(fields: [customerId], references: [id])
+
+  reservationId Int?
+  reservation   Reservation? @relation(fields: [reservationId], references: [id])
+
+  items OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model OrderItem {
+  id         Int      @id @default(autoincrement())
+  quantity   Int
+  unitPriceCents Int
+  nameSnapshot String        // Name captured at time of order
+
+  orderId Int
+  order   Order   @relation(fields: [orderId], references: [id])
+
+  menuItemId Int?
+  menuItem   MenuItem? @relation(fields: [menuItemId], references: [id])
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  SEATED
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum OrderStatus {
+  PENDING
+  IN_PROGRESS
+  READY
+  SERVED
+  CLOSED
+  CANCELLED
+}
+
+model AdminUser {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String?
+  isActive  Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
