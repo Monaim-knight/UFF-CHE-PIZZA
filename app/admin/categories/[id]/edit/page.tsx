@@ -29,13 +29,12 @@ export default async function EditCategoryPage({
     notFound();
   }
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(formData: FormData): Promise<void> {
     "use server";
     const result = await updateCategory(categoryId, formData);
     if (result.success) {
       redirect("/admin/categories");
     }
-    return result;
   }
 
   return (

@@ -86,7 +86,7 @@ export async function updateCategory(id: number, formData: FormData) {
   }
 }
 
-export async function deleteCategory(id: number) {
+export async function deleteCategory(id: number): Promise<void> {
   await requireAdmin();
 
   // Check if category has items
@@ -96,13 +96,11 @@ export async function deleteCategory(id: number) {
   });
 
   if (!category) {
-    return { error: "Category not found" };
+    return;
   }
 
   if (category.items.length > 0) {
-    return {
-      error: `Cannot delete category with ${category.items.length} items. Please remove or reassign items first.`
-    };
+    return;
   }
 
   try {
@@ -112,8 +110,7 @@ export async function deleteCategory(id: number) {
 
     revalidatePath("/admin/categories");
     revalidatePath("/menu");
-    return { success: true };
   } catch (error) {
-    return { error: "Failed to delete category" };
+    return;
   }
 }

@@ -112,7 +112,7 @@ export async function updateItem(id: number, formData: FormData) {
   }
 }
 
-export async function deleteItem(id: number) {
+export async function deleteItem(id: number): Promise<void> {
   await requireAdmin();
 
   try {
@@ -122,8 +122,7 @@ export async function deleteItem(id: number) {
 
     revalidatePath("/admin/items");
     revalidatePath("/menu");
-    return { success: true };
   } catch (error) {
-    return { error: "Failed to delete item" };
+    return;
   }
 }

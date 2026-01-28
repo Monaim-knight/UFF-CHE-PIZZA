@@ -34,13 +34,12 @@ export default async function EditItemPage({
     notFound();
   }
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(formData: FormData): Promise<void> {
     "use server";
     const result = await updateItem(itemId, formData);
     if (result.success) {
       redirect("/admin/items");
     }
-    return result;
   }
 
   return (

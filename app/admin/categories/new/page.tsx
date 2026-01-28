@@ -10,13 +10,12 @@ import { redirect } from "next/navigation";
 export default async function NewCategoryPage() {
   await requireAdmin();
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(formData: FormData): Promise<void> {
     "use server";
     const result = await createCategory(formData);
     if (result.success) {
       redirect("/admin/categories");
     }
-    return result;
   }
 
   return (

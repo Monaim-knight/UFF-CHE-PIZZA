@@ -15,13 +15,12 @@ export default async function NewItemPage() {
     orderBy: { sortOrder: "asc" }
   });
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(formData: FormData): Promise<void> {
     "use server";
     const result = await createItem(formData);
     if (result.success) {
       redirect("/admin/items");
     }
-    return result;
   }
 
   return (
