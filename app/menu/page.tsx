@@ -2,7 +2,8 @@ import Link from "next/link";
 import { getFullMenu } from "@/lib/menu";
 import { MenuItemCard } from "@/components/MenuItemCard";
 
-export const revalidate = 3600; // Revalidate every hour
+// Dynamic so build does not require DATABASE_URL; data is fetched at runtime.
+export const dynamic = "force-dynamic";
 
 export default async function MenuPage() {
   const categories = await getFullMenu();
