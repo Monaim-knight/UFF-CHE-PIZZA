@@ -35,6 +35,7 @@ export default async function EditCategoryPage({
     if (result.success) {
       redirect("/admin/categories");
     }
+    return;
   }
 
   return (
