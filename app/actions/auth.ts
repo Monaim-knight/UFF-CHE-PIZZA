@@ -32,7 +32,25 @@ export async function loginAction(
     await createSession(adminUser.id);
     redirect("/admin");
   } catch (error) {
-    console.error("Login error:", error);
+    // Let Next.js redirects bubble up (they use NEXT_REDIRECT errors internally)
+    if (
+      error &&
+      typeof error === "object" &&
+      (error as any).digest &&
+      typeof (error as any).digest === "string" &&
+      (error as any).digest.startsWith("NEXT_REDIRECT")
+    ) {
+      throw error;
+    }
+
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Login error:", message, error);
+
+    // In development, surface the error to help debug (e.g. DB connection)
+    if (process.env.NODE_ENV === "development") {
+      return { error: `Login failed: ${message}` };
+    }
+
     return { error: "An error occurred. Please try again." };
   }
 }
