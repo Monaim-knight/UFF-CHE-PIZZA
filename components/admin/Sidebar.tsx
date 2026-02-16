@@ -7,7 +7,8 @@ import { logoutAction } from "@/app/actions/auth";
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: "📊" },
   { href: "/admin/categories", label: "Categories", icon: "📁" },
-  { href: "/admin/items", label: "Menu Items", icon: "🍽️" }
+  { href: "/admin/items", label: "Menu Items", icon: "🍽️" },
+  { href: "/admin/content", label: "Site Content", icon: "✏️" }
 ];
 
 export function Sidebar() {

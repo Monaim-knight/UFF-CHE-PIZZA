@@ -133,3 +133,9 @@ model AdminUser {
   updatedAt DateTime @updatedAt
 }
 
+model SiteContent {
+  id    Int    @id @default(autoincrement())
+  key   String @unique
+  value String
+}
+

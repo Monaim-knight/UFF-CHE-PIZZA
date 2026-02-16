@@ -1,20 +1,28 @@
 import Link from "next/link";
 import { getFullMenu } from "@/lib/menu";
+import { getAllContent } from "@/lib/site-content";
 import { MenuItemCard } from "@/components/MenuItemCard";
 
 // Dynamic so build does not require DATABASE_URL; data is fetched at runtime.
 export const dynamic = "force-dynamic";
 
 export default async function MenuPage() {
-  const categories = await getFullMenu();
+  const [categories, content] = await Promise.all([
+    getFullMenu(),
+    getAllContent(),
+  ]);
+
+  const title = content.menu_page_title || "Our Menu";
+  const subtitle =
+    content.menu_page_subtitle ||
+    "Authentic Italian pizzas made fresh to order. Browse our selection, add items to your cart, and place your order for pickup or delivery.";
 
   return (
     <div className="container py-12 md:py-16">
       <div className="mb-12 space-y-4 text-center">
-        <h1>Our Menu</h1>
+        <h1>{title}</h1>
         <p className="mx-auto max-w-2xl text-base text-slate-300 md:text-lg">
-          Authentic Italian pizzas made fresh to order. Browse our selection,
-          add items to your cart, and place your order for pickup or delivery.
+          {subtitle}
         </p>
       </div>
 

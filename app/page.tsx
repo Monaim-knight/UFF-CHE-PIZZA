@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { PizzaCard } from "@/components/PizzaCard";
+import { getAllContent } from "@/lib/site-content";
 
 const HERO_PLACEHOLDER = "/pizza-placeholder.jpg";
 
@@ -55,10 +56,12 @@ const FEATURED_PIZZAS = [
   }
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const c = await getAllContent();
+
   return (
     <>
-      {/* Hero: large banner placeholder + headline */}
+      {/* Hero */}
       <section className="relative overflow-hidden border-b border-slate-800 bg-slate-950">
         <div className="relative aspect-[21/9] w-full min-h-[280px] md:min-h-[360px]">
           <Image
@@ -72,10 +75,11 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
           <div className="container absolute inset-0 flex flex-col justify-end pb-12 pt-8 md:pb-16">
             <h1 className="max-w-2xl text-4xl font-display font-bold tracking-tight text-white drop-shadow-lg md:text-5xl lg:text-6xl">
-              Authentic Italian pizza, wood-fired in Berlin.
+              {c.hero_headline || "Authentic Italian pizza, wood-fired in Berlin."}
             </h1>
             <p className="mt-3 max-w-xl text-lg text-white/90 drop-shadow md:text-xl">
-              Traditional recipes, fresh ingredients, and the warmth of Italian hospitality.
+              {c.hero_tagline ||
+                "Traditional recipes, fresh ingredients, and the warmth of Italian hospitality."}
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
               <Link
@@ -100,10 +104,10 @@ export default function HomePage() {
         <div className="container">
           <div className="text-center">
             <h2 className="font-display text-3xl font-semibold text-slate-900 md:text-4xl">
-              Our Favourites
+              {c.featured_title || "Our Favourites"}
             </h2>
             <p className="mt-2 text-slate-600 md:text-lg">
-              Handmade, wood-fired, and made to order.
+              {c.featured_subtitle || "Handmade, wood-fired, and made to order."}
             </p>
           </div>
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -121,7 +125,7 @@ export default function HomePage() {
           <div className="mt-12 text-center">
             <Link
               href="/menu"
-              className="inline-flex items-center rounded-full bg-red-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-slate-100"
+              className="inline-flex rounded-full bg-red-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-slate-100"
             >
               See full menu
             </Link>
@@ -129,7 +133,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* About – keep for #about anchor from nav */}
+      {/* About */}
       <section
         id="about"
         className="border-b border-slate-800 bg-white py-16 md:py-20"
@@ -137,21 +141,20 @@ export default function HomePage() {
         <div className="container grid gap-12 md:grid-cols-2">
           <div className="space-y-4">
             <h2 className="font-display text-3xl font-semibold text-slate-900 md:text-4xl">
-              Authentic Italian, made in Berlin.
+              {c.about_heading || "Authentic Italian, made in Berlin."}
             </h2>
             <p className="text-slate-600">
-              Every pizza at UFF CHE PIZZA is crafted with imported Italian flour,
-              San Marzano tomatoes, and fresh mozzarella. Our dough is hand-stretched
-              and baked in a wood-fired oven for that true Neapolitan taste.
+              {c.about_paragraph_1 ||
+                "Every pizza at UFF CHE PIZZA is crafted with imported Italian flour, San Marzano tomatoes, and fresh mozzarella. Our dough is hand-stretched and baked in a wood-fired oven for that true Neapolitan taste."}
             </p>
             <p className="text-slate-600">
-              We believe in the Italian tradition of using the finest ingredients
-              and taking the time to do things right. Every pizza is made fresh to order.
+              {c.about_paragraph_2 ||
+                "We believe in the Italian tradition of using the finest ingredients and taking the time to do things right. Every pizza is made fresh to order."}
             </p>
           </div>
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
             <h3 className="font-display text-lg font-semibold text-slate-900">
-              Why choose us
+              {c.about_sidebar_title || "Why choose us"}
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-slate-600">
               <li className="flex items-center gap-2">
@@ -168,23 +171,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Order CTA – keep for #order anchor from nav */}
+      {/* Order CTA */}
       <section
         id="order"
         className="border-b border-slate-800 bg-slate-950 py-16 md:py-20"
       >
         <div className="container text-center">
           <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">
-            Ready to order?
+            {c.order_heading || "Ready to order?"}
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-slate-300">
-            Browse our menu, add items to your cart, and order for pickup or delivery.
+            {c.order_text ||
+              "Browse our menu, add items to your cart, and order for pickup or delivery."}
           </p>
           <Link
             href="/menu"
             className="mt-8 inline-flex rounded-full bg-red-600 px-8 py-4 text-base font-semibold text-white transition hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-slate-950"
           >
-            Start ordering
+            {c.order_button_text || "Start ordering"}
           </Link>
         </div>
       </section>
