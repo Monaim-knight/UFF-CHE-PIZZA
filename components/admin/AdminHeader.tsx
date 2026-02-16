@@ -17,6 +17,12 @@ export async function AdminHeader() {
           </div>
         )}
         <Link
+          href="/admin/content"
+          className="rounded-lg border border-brand-500/50 bg-brand-500/10 px-3 py-1.5 text-sm font-medium text-brand-300 hover:bg-brand-500/20"
+        >
+          ✏️ Site Content
+        </Link>
+        <Link
           href="/"
           target="_blank"
           className="text-sm text-slate-400 hover:text-brand-300"
