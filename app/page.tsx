@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { PizzaCard } from "@/components/PizzaCard";
 import { getAllContent } from "@/lib/site-content";
+import { getFeaturedItems } from "@/lib/menu";
 
 const HERO_PLACEHOLDER = "/pizza-placeholder.jpg";
 
@@ -57,7 +58,10 @@ const FEATURED_PIZZAS = [
 ];
 
 export default async function HomePage() {
-  const c = await getAllContent();
+  const [c, featuredItems] = await Promise.all([
+    getAllContent(),
+    getFeaturedItems(6)
+  ]);
 
   return (
     <>
@@ -111,16 +115,33 @@ export default async function HomePage() {
             </p>
           </div>
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {FEATURED_PIZZAS.map((pizza) => (
-              <PizzaCard
-                key={pizza.name}
-                name={pizza.name}
-                description={pizza.description}
-                price={pizza.price}
-                imageSrc={pizza.imageSrc}
-                imageAlt={pizza.imageAlt}
-              />
-            ))}
+            {(featuredItems.length ? featuredItems : FEATURED_PIZZAS).map(
+              (pizza: any) => {
+                // When using DB items, map fields to the card props.
+                const name = pizza.name;
+                const description = pizza.description;
+                const price =
+                  typeof pizza.priceCents === "number"
+                    ? `$${(pizza.priceCents / 100).toFixed(2)}`
+                    : pizza.price;
+                const imageSrc =
+                  typeof pizza.imageUrl === "string" && pizza.imageUrl
+                    ? pizza.imageUrl
+                    : pizza.imageSrc;
+                const imageAlt = pizza.imageAlt || pizza.name;
+
+                return (
+                  <PizzaCard
+                    key={name}
+                    name={name}
+                    description={description}
+                    price={price}
+                    imageSrc={imageSrc}
+                    imageAlt={imageAlt}
+                  />
+                );
+              }
+            )}
           </div>
           <div className="mt-12 text-center">
             <Link

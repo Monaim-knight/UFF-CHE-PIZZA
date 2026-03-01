@@ -13,6 +13,17 @@ export async function getFullMenu() {
   return categories;
 }
 
+export async function getFeaturedItems(limit = 6) {
+  return prisma.menuItem.findMany({
+    where: {
+      // Items tagged as 'signature' will appear in the homepage \"Our Favourites\" section.
+      tags: { has: "signature" }
+    },
+    orderBy: { sortOrder: "asc" },
+    take: limit
+  });
+}
+
 export async function getCategoryById(id: number) {
   return prisma.menuCategory.findUnique({
     where: { id },
