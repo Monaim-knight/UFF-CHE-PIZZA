@@ -58,10 +58,13 @@ const FEATURED_PIZZAS = [
 ];
 
 export default async function HomePage() {
-  const [c, featuredItems] = await Promise.all([
-    getAllContent(),
-    getFeaturedItems(6)
-  ]);
+  const c = await getAllContent();
+  let featuredItems: Awaited<ReturnType<typeof getFeaturedItems>> = [];
+  try {
+    featuredItems = await getFeaturedItems(6);
+  } catch {
+    // DB not available at build time (e.g. Vercel); use fallback below
+  }
 
   return (
     <>
