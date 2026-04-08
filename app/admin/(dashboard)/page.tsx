@@ -57,6 +57,12 @@ export default async function AdminDashboard() {
             🍽️ Menu Items
           </Link>
           <Link
+            href="/admin/uploads"
+            className="rounded-lg border border-slate-700 bg-slate-950/50 px-4 py-2.5 text-sm font-medium text-slate-200 transition hover:bg-slate-800 hover:text-slate-50"
+          >
+            🖼️ Upload images
+          </Link>
+          <Link
             href="/admin/content"
             className="rounded-lg border border-brand-500/50 bg-brand-500/10 px-4 py-2.5 text-sm font-medium text-brand-300 transition hover:bg-brand-500/20"
           >

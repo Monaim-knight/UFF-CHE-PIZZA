@@ -3,6 +3,7 @@ import { createItem } from "@/app/actions/items";
 import { FormInput } from "@/components/admin/FormInput";
 import { FormTextarea } from "@/components/admin/FormTextarea";
 import { FormSelect } from "@/components/admin/FormSelect";
+import { ImageUrlField } from "@/components/admin/ImageUrlField";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import Link from "next/link";
 import { requireAdmin } from "@/lib/admin";
@@ -71,10 +72,8 @@ export default async function NewItemPage() {
             />
           </div>
 
-          <FormInput
+          <ImageUrlField
             label="Image URL"
-            name="imageUrl"
-            type="url"
             placeholder="https://example.com/image.jpg or /menu-item.svg"
           />
 
