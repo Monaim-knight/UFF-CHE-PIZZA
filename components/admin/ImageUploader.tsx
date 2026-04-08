@@ -77,7 +77,7 @@ export function ImageUploader({ onUpload, label = "Upload image" }: Props) {
         disabled={loading}
         className="rounded-lg border border-slate-700 bg-slate-800 px-4 py-2 text-sm font-medium text-slate-100 transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {loading ? "Uploading…" : "Choose image (max 4MB)"}
+        {loading ? "Uploading…" : "Choose image (max 10MB)"}
       </button>
       {success && (
         <p className="mt-2 text-sm text-green-400">Image uploaded.</p>

@@ -5,7 +5,7 @@ import path from "path";
 import { put } from "@vercel/blob";
 
 const UPLOADS_DIR = "public/uploads";
-const MAX_SIZE = 4 * 1024 * 1024; // 4MB
+const MAX_SIZE = 10 * 1024 * 1024; // 10MB
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 
 function safeFilename(originalName: string): string {
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
 
     if (file.size > MAX_SIZE) {
       return NextResponse.json(
-        { error: "File too large (max 4MB)" },
+        { error: "File too large (max 10MB)" },
         { status: 400 }
       );
     }

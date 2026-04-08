@@ -21,7 +21,7 @@ export default async function UploadsPage() {
           Upload a new image
         </h2>
         <p className="mb-4 text-sm text-slate-400">
-          Click the button below, choose an image (max 4MB), and wait for the
+          Click the button below, choose an image (max 10MB), and wait for the
           upload to finish. The image URL will appear; copy it and use it in{" "}
           <Link
             href="/admin/items"
